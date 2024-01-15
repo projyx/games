@@ -1,0 +1,79 @@
+@media {
+    body {
+        font-family: Arial;
+        margin: 0;
+    }
+
+    body.dragging iframe {
+        pointer-events: none;
+    }
+
+    form {
+        margin: 0;
+    }
+
+    button {
+        background: none;
+        border: 0;
+        padding: 0;
+        -webkit-appearance: none;
+    }
+
+    column, flex, row, section {
+        display: flex;
+    }
+
+    column {
+        flex-direction: column;
+    }
+
+    i:has(con) {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+    }
+
+    iframe {
+        background: white;
+        border: 0;
+        height: 100%;
+        width: 100%;
+    }
+
+    input[type="text"] {
+        background-color: transparent;
+        bordeR: none;
+    }
+
+    input[type="text"]:focus {
+        outline: none;
+    }
+
+    picture {
+        position: relative;
+    }
+}
+
+@media {
+    [data-before]::before {
+        content: attr(data-before)
+    }
+
+    [placeholder]:not(input):empty:before {
+        content: attr(placeholder);
+        opacity: 0.5;
+    }
+}
+
+@media {
+    component, .component {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        min-height: 100%;
+    }
+
+    [component]:not(.active) {
+        display: none;
+    }
+}
