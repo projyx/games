@@ -1,16 +1,107 @@
 <html>
     <head>
         <title>[ Games ] Jyxer | ProJyx</title>
-        <link href="/index.css" rel="stylesheet">
-        <script src="/index.js"></script>
+        <meta name='viewport' content='width=device-width,initial-scale=1.0,maximum-scale=1.0'>
+        <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+        <meta name='apple-mobile-web-app-capable' content='yes'>
+        <meta name='apple-mobile-web-app-status-bar-style'>
+        <meta name="apple-mobile-web-app-title">
+        <meta name="application-name">
+        <meta name="application-shortname">
+        <meta name="msapplication-TileColor">
+        <meta name='theme-color'>
+        <link href="https://cdn.jsdelivr.net/npm/css.gg/icons/icons.css" rel="stylesheet">
+        <link href="https://endk.it/raw/asset/css/ui.css" rel="stylesheet">
+        <link href="index.css" rel="stylesheet">
+        <link href="raw/style/_.css" rel="stylesheet">
+        <link href="raw/style/theme.css" rel="stylesheet">
         <script src="https://endk.it/raw/asset/js/firebase.app.js"></script>
         <script src="https://endk.it/raw/asset/js/firebase.auth.js"></script>
-        <script src="https://endk.it/raw/asset/js/raw/asset/js/router.js"></script>
+        <script src="https://endk.it/raw/asset/js/ochopussy.js"></script>
+        <script src="https://endk.it/raw/asset/js/router.js"></script>
+        <script src="index.js"></script>
+        <script src="raw/asset/js/routes.js"></script>
+        <script>
+            var domains = {
+                "games.jyxer.com": "/",
+                "games.jyxer.tld": "/",
+                "games-jyxer.pages.dev": "/games",
+                "projyx.github.io": "/games",
+                "projyx.github.tld": "/games"
+            };
+            var base = document.createElement('base');
+            var template = document.head.querySelector('template');
+            var host = window.location.host;
+            var origin = window.location.origin;
+            base.href = origin + domains[host] + "/";
+            document.head.querySelector('script').insertAdjacentHTML("afterend", base.outerHTML);
+            base = document.head.querySelector('script').nextElementSibling;
+            //console.log(base, template);
+            //base.insertAdjacentHTML("afterend", template.content.firstElementChild.innerHTML);
+        </script>
     </head>
-    <body>
-        <header>games</header>
-        <main auth="true">
-            <page route="/"></page>
+    <body theme="auto">
+        <header class="body-header">
+            <row>
+                <card class="card-buttons">
+                    <row>
+                        <box class="box-avatar" onclick="github.oauth.login()">
+                            <flex>
+                                <picture></picture>
+                                <picture>
+                                    <img src="raw/asset/png/github.png">
+                                </picture>
+                            </flex>
+                        </box>
+                    </row>
+                </card>
+                <card class="card-branding">
+                    <row>
+                        <box>
+                            <flex>
+                                <i>
+                                    <con class="gg-sun"></con>
+                                </i>
+                            </flex>
+                        </box>
+                        <box>
+                            <row>
+                                <text>1</text>
+                                <text>2</text>
+                                <text>:</text>
+                                <text>3</text>
+                                <text>4</text>
+                            </row>
+                        </box>
+                        <box>
+                            <flex>
+                                <i>
+                                    <con class="gg-maximize"></con>
+                                </i>
+                            </flex>
+                        </box>
+                    </row>
+                </card>
+            </row>
+        </header>
+        <main class="body-main">
+            <page routes="/">
+                <blocks>
+                    <block>
+                        <flex>
+                            <card>
+                                <section>
+                                    <box></box>
+                                    <box></box>
+                                    <box></box>
+                                    <box></box>
+                                    <box></box>
+                                </section>
+                            </card>
+                        </flex>
+                    </block>
+                </blocks>
+            </page>
         </main>
     </body>
 </html>

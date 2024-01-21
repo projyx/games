@@ -1,4 +1,4 @@
-window.onload = async(event)=>{
+window.onload = async function() {
     function compare(a, b) {
         var routed = (c)=>{
             return c.getAttribute('route') ? c.getAttribute('route') : c.getAttribute('routes');
@@ -7,7 +7,7 @@ window.onload = async(event)=>{
         var bb = routed(b);
         var x = rout.ed(aa);
         var y = rout.ed(bb);
-        0 > 1 ? console.log(15, aa, bb, x.length, y.length) : null;
+        0 < 1 ? console.log(15, aa, bb, x.length, y.length) : null;
         var routes = (z)=>{
             return x.length < y.length ? x : y;
         }
@@ -16,7 +16,7 @@ window.onload = async(event)=>{
         var paths = rout.ed(aa).length - rout.ed(bb).length;
         return alpha
     }
-    Array.from(document.querySelectorAll('[route], [routes]')).sort(compare).forEach(function(component) {
+    Array.from(document.querySelectorAll('[route], [routes]')).sort(compare).reverse().forEach(function(component) {
         var route = {
             file: component.getAttribute('component') + ".html",
             url: component.getAttribute('route') || component.getAttribute('routes'),
@@ -30,52 +30,80 @@ window.onload = async(event)=>{
         routes: window.routes
     }) : null;
 
-    rout.er(window.location.pathname);
     firebase.initializeApp({
         apiKey: "AIzaSyA2K41RYhtZm4nx2F1liIJ8ly4ejy6gqc8",
         authDomain: "pro-jyx.firebaseapp.com",
         projectId: "pro-jyx",
         appId: "1:492439614306:web:58cffeca539613b875b23b"
     });
-    firebase.auth().onAuthStateChanged(user=>{
+    firebase.auth().onAuthStateChanged(async(user)=>{
+        var pathname = window.location.href.split(document.head.querySelector("base").href)[1];
+        console.log(41, {
+            pathname
+        });
         if (user) {
-            0 > 1 ? console.log(42, 'index.user', {
+            window.user = user;
+            0 < 1 ? console.log(42, 'index.user', {
                 user
             }) : null;
-            github.user.self().then(function(user) {
-                //console.log(user);
-                var avatar_url = user.avatar_url;
-                Array.from(document.body.querySelectorAll(".avatar-image")).forEach(function(avatar) {
-                    var img = document.createElement("img");
-                    img.setAttribute('href', '/:user');
-                    img.src = avatar_url;
-                    avatar.innerHTML = img.outerHTML;
+            try {
+                var uid = user.uid;
+                var user = await github.user.self(user);
+                console.log(52, user);
+
+                const avi = document.body.querySelector('.box-avatar');
+                var pic = avi.querySelector('picture');
+                var img = document.createElement('img');
+                img.src = user.avatar_url;
+                pic.innerHTML = img.outerHTML;
+
+                document.body.setAttribute('uid', uid)
+                //localStorage.setItem('githubAccessToken', token);
+
+                //localStorage.setItem("user", user.login);
+
+                rout.er(pathname);
+                authState(user)
+            } catch (e) {
+                console.log(56, 'onAuthStateChanged', {
+                    e
                 });
-                localStorage.setItem("user", user.login);
-            });
+                rout.er(pathname);
+                authState(user)
+            }
         } else {
+            window.user = null;
             localStorage.removeItem('githubAccessToken');
             Array.from(document.body.querySelectorAll(".avatar-image")).forEach(function(avatar) {
                 avatar.innerHTML = "";
             });
+            rout.er(pathname);
+            authState(user)
         }
         //dom.body.dataset.load = "ed";
     }
     );
-    document.body.onclick = window.events.onclick.document;
-    
-    document.onkeydown = window.events.onkeydown;
 
-    window.dom = {};
-}
-
-window.onpopstate = (event)=>{
-    var state = event.state;
-    console.log(event, state);
-    if (state && state.url) {
-        console.log(state);
-        state.url.length > 0 ? rout.er(state.url, {
-            pop: true
-        }) : null;
+    async function authState() {
+        const githubAccessToken = localStorage.githubAccessToken;
+        if (githubAccessToken) {
+            var repos = await github.user.repos();
+            var card = document.querySelector(".nav-card");
+            var template = card.querySelector("template");
+            console.log(22, {
+                repos,
+                card,
+                template
+            });
+            repos.forEach(function(repo) {
+                var box = template.content.firstElementChild.cloneNode(true);
+                box.querySelector("text").textContent = repo.name;
+                template.previousElementSibling.insertAdjacentHTML('beforeend', box.outerHTML);
+            });
+        } else {
+            const avi = document.body.querySelector('.box-avatar');
+            var img = avi.querySelector('img');
+            img.src = "raw/asset/svg/github.svg";
+        }
     }
 }
