@@ -11,7 +11,7 @@
         <meta name="msapplication-TileColor">
         <meta name='theme-color'>
         <link href="https://cdn.jsdelivr.net/npm/css.gg/icons/icons.css" rel="stylesheet">
-        <link href="https://endk.it/raw/asset/css/ui.css" rel="stylesheet">
+        <link href="https://endk.it/raw/asset/css/framework.css" rel="stylesheet">
         <link href="index.css" rel="stylesheet">
         <link href="raw/style/_.css" rel="stylesheet">
         <link href="raw/style/theme.css" rel="stylesheet">
@@ -43,7 +43,7 @@
     <body theme="auto">
         <header class="body-header">
             <row>
-                <card class="card-buttons">
+                <card class="card-user">
                     <row>
                         <box class="box-avatar" onclick="github.oauth.login()">
                             <flex>
@@ -55,7 +55,7 @@
                         </box>
                     </row>
                 </card>
-                <card class="card-branding">
+                <card class="card-system">
                     <row>
                         <box>
                             <flex>
@@ -87,21 +87,46 @@
         <main class="body-main">
             <page routes="/">
                 <blocks>
-                    <block>
+                    <block class="block-games">
                         <flex>
-                            <card>
-                                <section>
-                                    <box></box>
-                                    <box></box>
-                                    <box></box>
-                                    <box></box>
-                                    <box></box>
-                                </section>
-                            </card>
+                            <card class="card-game"></card>
+                            <card class="card-game"></card>
+                            <card class="card-game"></card>
+                            <card class="card-game"></card>
+                            <card class="card-game"></card>
                         </flex>
                     </block>
                 </blocks>
             </page>
         </main>
     </body>
+    <footer>
+        <row>
+            <card>
+                <section>
+                    <box>
+                        <section>
+                            <i>
+                                <con class="gg-bag"></con>
+                            </i>
+                        </section>
+                    </box>
+                    <box>
+                        <section>
+                            <i>
+                                <con class=""></con>
+                            </i>
+                        </section>
+                    </box>
+                    <box>
+                        <section>
+                            <i>
+                                <con></con>
+                            </i>
+                        </section>
+                    </box>
+                </section>
+            </card>
+        </row>
+    </footer>
 </html>
