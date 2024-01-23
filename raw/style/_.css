@@ -53,6 +53,16 @@
         height: 100%;
         padding: 0 10px;
     }
+    
+    body > .body-header card:last-child box {
+        height: 50px;
+        justify-content: center;
+    }
+    
+    body > .body-header card:last-child box:nth-child(2) {
+        font-family: cursive;
+        margin: 0 10px 0 5px;
+    }
 
     body > .body-header .card-branding > flex {
         align-items: center;
